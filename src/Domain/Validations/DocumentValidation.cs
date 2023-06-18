@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Validations
 {
-    public class DocumentValidation
+    public static class DocumentValidation
     {
-        public static bool IsCPF(string cpf)
+        public static bool IsCPF( this string cpf)
         {
             if (cpf == null) return false;
 

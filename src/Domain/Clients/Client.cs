@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 
 
+
 namespace Domain.Costumers
 {
     public class Client
@@ -53,7 +54,7 @@ namespace Domain.Costumers
             {
                 RuleFor(x => x.Age).InclusiveBetween(18, 99).WithMessage("Idade do Cliente Invalida. Insira uma Idade entre 18 a 99 anos");
                 RuleFor(x => x.Document)
-                .Must(e => DocumentValidation.IsCPF(e))
+                .Must(x => x.IsCPF())
                 .WithMessage("O CPF informado é inválido!");
 
             }
