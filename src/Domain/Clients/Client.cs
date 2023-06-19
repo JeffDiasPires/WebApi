@@ -52,7 +52,7 @@ namespace Domain.Costumers
         {
             public ClientValidator()
             {
-                RuleFor(x => x.Age).InclusiveBetween(18, 99).WithMessage("Idade do Cliente Invalida. Insira uma Idade entre 18 a 99 anos");
+                RuleFor(x => x.Age).InclusiveBetween(18, 99).WithMessage("Idade do Cliente Invalida. Cliente precisa ser maior de idade");
                 RuleFor(x => x.Document)
                 .Must(x => x.IsCPF())
                 .WithMessage("O CPF informado é inválido!");
@@ -80,7 +80,7 @@ namespace Domain.Costumers
         public bool CalculateBirthYearDiff(int BirthdayYear, int CurrentYear, int Age)
         {
             var diff = CurrentYear - BirthdayYear; 
-            if (diff != Age)
+            if (diff != Age || diff == 0)
             {
                 Error = "Idade não confere com data de nascimento enviada";
                 return true;

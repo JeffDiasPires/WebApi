@@ -23,12 +23,12 @@ namespace Application.Commands
         {
             var response = _clientsService.GetAsync(request.Client.Document);
 
-            if (response != null && response.Result.Document.Any()) {
+            //if (response.Result != null && response.Result.Document.Any()) {
 
-                response.Result.Error = "CPF já esta cadastrado";
-                return response.Result;
+            //    response.Result.Error = "CPF já esta cadastrado";
+            //    return response.Result;
 
-            }
+            //}
             await _clientsService.CreateAsync(request.Client);
             return request.Client;
         }

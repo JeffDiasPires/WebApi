@@ -1,5 +1,4 @@
-﻿using Application.Commands;
-using Application.Commands.Create;
+﻿using Application.Commands.Create;
 using Application.Queries;
 using Domain.Costumers;
 using MediatR;
@@ -12,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using static Domain.Costumers.Client;
+
 
 namespace MySolution.WebAPi.Controllers
 {

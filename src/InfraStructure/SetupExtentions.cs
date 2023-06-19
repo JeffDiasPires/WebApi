@@ -10,13 +10,10 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.Configure<MongoClusterDatabaseSettings>(options =>
             {
-                options.DatabaseName = configuration.GetSection("ClientDatabase:DatabaseName").Value;
-                options.ClientCollectionName = configuration.GetSection("ClientDatabase:CollectionName").Value;
-                options.ConnectionString = configuration.GetSection("ClientDatabase:ConnectionString").Value; 
+                options.DatabaseName = configuration.GetSection("ClientClusterDatabase:DatabaseName").Value;
+                options.ClientCollectionName = configuration.GetSection("ClientClusterDatabase:CollectionName").Value;
+                options.ConnectionString = configuration.GetSection("ClientClusterDatabase:ConnectionString").Value; 
             });
-
-            services.Configure<MongoDatabaseSettings>(options => configuration.GetSection("ClientDatabase"));
-
 
             return services;
         }

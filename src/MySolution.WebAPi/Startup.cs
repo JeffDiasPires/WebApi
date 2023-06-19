@@ -30,7 +30,6 @@ namespace MySolution.WebAPi
             services.AddApplication();
             services.AddInfra(Configuration);
             services.AddHttpContextAccessor();
-            //services.Configure<MongoDatabaseSettings>(Configuration.GetSection("ClientDatabase"));
             services.AddSingleton<ClientService>();
 
             services.AddScoped<IValidator<Client>, ClientValidator>();
