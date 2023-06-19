@@ -32,6 +32,6 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: website
-        path: MySolution.WebAPi/website/**
+        path: src/MySolution.WebAPi/website/**
         if-no-files-found: error
       
