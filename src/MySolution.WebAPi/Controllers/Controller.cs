@@ -1,4 +1,5 @@
 ﻿using Application.Commands.Create;
+using Application.Commands.Update;
 using Application.Queries;
 using Domain.Costumers;
 using MediatR;
@@ -43,17 +44,17 @@ namespace MySolution.WebAPi.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CreateClient([FromBody] Client input)
+        public async Task<IActionResult> Create([FromBody] Client input)
         {
-            if (!input.IsValid())
+
+            if(!input.DocumentIsValid() || !input.IsValid())
             {
                 return BadRequest(input.Error);
-
             }
 
             var response = await _mediator.Send(new CreateClientCommand { Client = input });
 
-            if(response.Error.Any())
+            if(response.Error.Message.Any())
             {
                 return BadRequest(response.Error);
             }
@@ -71,19 +72,45 @@ namespace MySolution.WebAPi.Controllers
             Client cli = new();
             cli.Document = document;
 
-            if (!cli.IsValid())
+            if (!cli.DocumentIsValid())
             {
                 return BadRequest(cli.Error);
 
             }
-            var result = await _mediator.Send(new GetClientCommand { Document = document});
+            var result = await _mediator.Send(new GetClientByDocumentQuery { Document = document});
 
-            if(result.Error.Any()) {
+            if(result.Error != null) {
 
                 return NotFound(result.Error);
             }
 
             return Ok(result);
+        }
+        #endregion
+        #region Update
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Update(string id, Client updatedClient)
+        {
+
+            updatedClient._id = id;
+
+            if (!updatedClient.IsValid()|| !updatedClient.DocumentIsValid() || !updatedClient.IdIsValid())
+            {
+                return BadRequest(updatedClient.Error);
+
+            }
+
+            updatedClient = await _mediator.Send(new UpdateClientCommand { Id = id , Client = updatedClient});
+
+            if (updatedClient.Error != null)
+            {
+
+                return BadRequest(updatedClient.Error);
+            }
+
+            return Accepted();
         }
         #endregion
     }

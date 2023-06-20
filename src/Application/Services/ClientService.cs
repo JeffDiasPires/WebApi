@@ -27,9 +27,11 @@ namespace MySolution.Application.Services
                 clientStoreDatabaseSettings.Value.ClientCollectionName);
         }
 
-        public async Task<Client?> GetAsync(string document) => await _clientsCollection.Find(x => x.Document == document ).FirstOrDefaultAsync();
+        public async Task<Client> GetAsync(string document) => await _clientsCollection.Find(x => x.Document == document ).FirstOrDefaultAsync();
 
         public async Task CreateAsync(Client newClient) => await _clientsCollection.InsertOneAsync(newClient);
+
+        public async Task<ReplaceOneResult> UpdateAsync(string id, Client updatedClient) => await _clientsCollection.ReplaceOneAsync(x => x._id == id, updatedClient);
 
     }
 }

@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Tavis.UriTemplates;
 
 namespace Application.Commands
 {
@@ -21,14 +22,19 @@ namespace Application.Commands
 
         public async Task<Client> Handle(CreateClientCommand request, CancellationToken cancellationToken)
         {
-            var response = _clientsService.GetAsync(request.Client.Document);
+            var result = await _clientsService.GetAsync(request.Client.Document);
 
-            //if (response.Result != null && response.Result.Document.Any()) {
+            if (result != null)
+            {
 
-            //    response.Result.Error = "CPF já esta cadastrado";
-            //    return response.Result;
+                result = new()
+                {
+                    Error = new() { Message = "Cliente Já Possui Cadastro. Por Favor Informe um novo cliente!" }
+                };
 
-            //}
+                return result;
+            }
+
             await _clientsService.CreateAsync(request.Client);
             return request.Client;
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Queries
 {
-    public class GetClientCommand : IRequest<Client>
+    public class GetClientByDocumentQuery : IRequest<Client>
     {
         
         public string Document { get; set; }
