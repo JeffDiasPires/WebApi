@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.png"></a>
+  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://i.ytimg.com/vi/VSsAsA6_-GE/maxresdefault.jpg></a>
   <br>
   WebApi-MongoDB
   <br>
