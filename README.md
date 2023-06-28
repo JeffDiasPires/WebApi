@@ -1,1 +1,1 @@
-![My Remote Image]([https://www.dropbox.com/s/.../my-remote-image.jpg?dl=0](https://cdn.hashnode.com/res/hashnode/image/upload/v1607164874734/ibnhGHe8A.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp)https://cdn.hashnode.com/res/hashnode/image/upload/v1607164874734/ibnhGHe8A.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp)
+<img src="/app/Teste.jpg" alt="Alt text" title="Optional title">
