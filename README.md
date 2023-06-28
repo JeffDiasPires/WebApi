@@ -1,1 +1,1 @@
-<img src="/app/Teste.jpg" alt="Alt text" title="Optional title">
+<img src="app/Teste.jpg" alt="Alt text" title="Optional title">
