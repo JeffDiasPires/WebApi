@@ -15,6 +15,11 @@ namespace Domain.Validations
             return id.Length == 24 && Regex.IsMatch(id, @"[0-9A-Fa-f]{24}\b");
         }
 
+        public static bool IsEmail(this string email)
+        {
+            return Regex.IsMatch(email, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+        }
+
         public static bool IsCPF( this string cpf)
         {
             if (cpf == null) return false;

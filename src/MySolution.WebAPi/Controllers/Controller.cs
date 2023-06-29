@@ -47,14 +47,14 @@ namespace MySolution.WebAPi.Controllers
         public async Task<IActionResult> Create([FromBody] Client input)
         {
 
-            if(!input.DocumentIsValid() || !input.IsValid())
+            if(!input.DocumentIsValid() || !input.IsValid() || !input.EmailIsValid())
             {
                 return BadRequest(input.Error);
             }
 
             var response = await _mediator.Send(new CreateClientCommand { Client = input });
 
-            if(response.Error.Message.Any())
+            if(response.Error != null)
             {
                 return BadRequest(response.Error);
             }
@@ -96,7 +96,7 @@ namespace MySolution.WebAPi.Controllers
 
             updatedClient._id = id;
 
-            if (!updatedClient.IsValid()|| !updatedClient.DocumentIsValid() || !updatedClient.IdIsValid())
+            if (!updatedClient.IsValid()|| !updatedClient.DocumentIsValid() || !updatedClient.IdIsValid() || !updatedClient.EmailIsValid())
             {
                 return BadRequest(updatedClient.Error);
 

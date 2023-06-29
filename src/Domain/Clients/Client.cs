@@ -45,10 +45,37 @@ namespace Domain.Costumers
         [BsonElement("Document")]
         public string Document { get; set; }
 
+
+        [Required]
+        [BsonElement("Email")]
+        public string Email { get; set; }
+
         [JsonIgnore]
         [BsonIgnore]
         public Errors Error { get; set; }
-        
+
+        public class EmailValidation : AbstractValidator<string>
+        {
+            public EmailValidation()
+            {
+                RuleFor(x => x)
+                .Must(x => x.IsEmail())
+                .WithMessage("O Email informado é inválido!");
+            }
+        }
+
+        public bool EmailIsValid()
+        {
+            var validator = new EmailValidation();
+            var validated = validator.Validate(this.Email);
+            if (!validated.IsValid)
+                Error = new() { Message = validated.Errors.First().ErrorMessage };
+
+            return validated.IsValid;
+
+
+        }
+
         public class ClientValidator : AbstractValidator<Client>
         {
             public ClientValidator()
